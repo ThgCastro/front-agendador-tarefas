@@ -18,9 +18,9 @@
                 <imput-password-field [control]="passwordControl"></imput-password-field>
             </form>
         </mat-card-content>
-        
+
         <mat-card-actions>
-            <button matButton="elevated" class="full-width" (click)="submit()">Cadastrar</button>
+            <button matButton="elevated" class="full-width" [disabled]="form.invalid" (click)="submit()">Cadastrar</button>
         </mat-card-actions>
     </mat-card>
 </div>

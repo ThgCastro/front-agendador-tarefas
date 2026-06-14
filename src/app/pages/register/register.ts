@@ -6,7 +6,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import { PasswordField } from '../../shared/components/password-field/password-field';
-import { ReactiveFormsModule ,FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { ReactiveFormsModule ,FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -20,9 +20,9 @@ export class Register {
 
   constructor(private formBuilder: FormBuilder){
     this.form = this.formBuilder.group({
-      fullName: [''],
-      email: [''],
-      password: ['']
+      fullName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(32)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
     });
   }
 
@@ -30,6 +30,10 @@ export class Register {
     return this.form.get('password') as FormControl;
   }
   submit(){
-    console.log(this.form.value)
+    if(this.form.invalid){
+      this.form.markAllAsTouched();
+      return
+    }
+    console.log("formulário preenchido!" ,this.form.value)
   }
 }
