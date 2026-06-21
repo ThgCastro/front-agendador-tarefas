@@ -20,7 +20,7 @@ export class Register {
 
   constructor(private formBuilder: FormBuilder){
     this.form = this.formBuilder.group({
-      fullName: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(35)]],
+      fullName: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(35)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
@@ -29,6 +29,21 @@ export class Register {
   get passwordControl(): FormControl{
     return this.form.get('password') as FormControl;
   }
+
+  get fullNameErrors(): string | null {
+    const fullNameControl = this.form.get('fullName');
+    if(fullNameControl?.hasError('required')) return 'O nome completo é obrigatório';
+    if(fullNameControl?.hasError('minlength')) return 'Cadastre um nome com mais de 3 letras';
+    return null
+  }
+
+  get emailErros(): string | null {
+    const emailControl = this.form.get('email');
+    if(emailControl?.hasError('required')) return 'O e-mail é obrigatório';
+    if(emailControl?.hasError('email')) return 'E-mail inválido';
+    return null
+  }
+
   submit(){
     if(this.form.invalid){
       this.form.markAllAsTouched();

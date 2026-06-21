@@ -9,19 +9,27 @@
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Nome</mat-label>
                     <input matInput formControlName="fullName" placeholder="Digite seu nome completo">
-                </mat-form-field>
 
+                    @if(fullNameErrors) {
+                    <mat-error>{{fullNameErrors}}</mat-error>
+                    }
+                </mat-form-field>
+                
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>E-mail</mat-label>
                     <input matInput formControlName="email" placeholder="Digite seu e-mail">
-                    <mat-error >E-mail inválido</mat-error>
+                    
+                    @if(emailErros) {
+                    <mat-error>{{emailErros}}</mat-error>
+                    }
                 </mat-form-field>
                 <imput-password-field [control]="passwordControl"></imput-password-field>
             </form>
         </mat-card-content>
 
         <mat-card-actions>
-            <button matButton="elevated" class="full-width" [disabled]="form.invalid" (click)="submit()">Cadastrar</button>
+            <button matButton="elevated" class="full-width" [disabled]="form.invalid"
+                (click)="submit()">Cadastrar</button>
         </mat-card-actions>
     </mat-card>
 </div>
