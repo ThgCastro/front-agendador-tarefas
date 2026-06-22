@@ -16,3 +16,12 @@
 .register-component .mat-mdc-text-field-wrapper {
     --mdc-outlined-text-field-container-shape: 40px;
 }
+
+.register-component .cad-button-content{
+    display: inline-flex;
+    align-items: center;
+}
+
+.register-component mat-spinner{
+    margin-left: 8px;
+}
