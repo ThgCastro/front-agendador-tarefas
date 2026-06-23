@@ -1,20 +1,11 @@
-<div class="register-component">
+<div class="login-component">
     <mat-card>
         <mat-card-header class="padding-m">
-            <mat-card-title>Cadastro de Usuário</mat-card-title>
+            <mat-card-title>Login de Usuário</mat-card-title>
         </mat-card-header>
 
         <mat-card-content>
             <form [formGroup]="form">
-                <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Nome</mat-label>
-                    <input matInput formControlName="nome" placeholder="Digite seu nome completo">
-
-                    @if(fullNameErrors) {
-                    <mat-error>{{fullNameErrors}}</mat-error>
-                    }
-                </mat-form-field>
-
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>E-mail</mat-label>
                     <input matInput formControlName="email" placeholder="Digite seu e-mail">
@@ -23,7 +14,7 @@
                     <mat-error>{{emailErros}}</mat-error>
                     }
                 </mat-form-field>
-                <imput-password-field [placeholder]="'Cadastre sua senha'" [control]="passwordControl"></imput-password-field>
+                <imput-password-field [control]="passwordControl"></imput-password-field>
             </form>
         </mat-card-content>
 

@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 interface UserRegisterPayload {
-    nome: string;
-    email: string;
-    senha: string;
+    nome: string,
+    email: string,
+    senha: string,
     endereco?: [{
         rua: string,
         numero: string,
@@ -21,8 +21,8 @@ interface UserRegisterPayload {
 }
 
 interface UserRegisterResponse {
-    nome: string;
-    email: string;
+    nome: string,
+    email: string,
     endereco: [{
         rua: string,
         numero: string,
@@ -30,11 +30,16 @@ interface UserRegisterResponse {
         cidade: string,
         estado: string,
         cep: string
-    }] | null;
+    }] | null
     telefone: [{
         numero: string,
         ddd: string
-    }] | null;
+    }] | null
+}
+
+export interface userLoginPayload {
+    email: string,
+    senha: string,
 }
 
 @Injectable({
@@ -48,5 +53,9 @@ export class UserService {
 
     register(body: UserRegisterPayload): Observable<UserRegisterResponse> {
         return this.http.post<UserRegisterResponse>(`${this.apirUrl}/usuario`, body)
+    }
+
+    login(body: userLoginPayload): Observable<string> {
+        return this.http.post<string>(`${this.apirUrl}/usuario/login`, body, {responseType: 'text' as 'json'})
     }
 }
