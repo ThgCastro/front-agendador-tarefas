@@ -13,7 +13,7 @@ import { RouterStateService } from '../../../../core/router/router-state';
   styleUrl: './top-menu.scss',
 })
 export class TopMenu implements OnInit, OnDestroy {
-  appLogo = "assets/logo-agendador-javanauta.png";
+  appLogo = "assets/logo.svg";
 
   rotaAtual: string = '';
   inscricaoRota!: Subscription;
