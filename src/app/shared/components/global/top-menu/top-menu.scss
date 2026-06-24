@@ -31,3 +31,15 @@
     height: 100%;
 }
 
+.app-top-menu-toolbar .user-avatar{
+    background-color: #4A196C;
+    color: white;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
