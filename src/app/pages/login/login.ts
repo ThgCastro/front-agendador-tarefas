@@ -21,18 +21,18 @@ import { Auth } from '../../services/auth';
   encapsulation: ViewEncapsulation.None
 })
 export class Login {
-  form: FormGroup<{email: FormControl<string>, senha: FormControl<string>}>;
+  form: FormGroup<{ email: FormControl<string>, senha: FormControl<string> }>;
   isLoading = false;
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router, private authService: Auth) {
     this.form = this.formBuilder.group({
-      email: this.formBuilder.control ('', {validators: [Validators.required, Validators.email], nonNullable: true}),
-      senha: this.formBuilder.control ('', {validators: [Validators.required, Validators.minLength(6)], nonNullable: true})
+      email: this.formBuilder.control('', { validators: [Validators.required, Validators.email], nonNullable: true }),
+      senha: this.formBuilder.control('', { validators: [Validators.required, Validators.minLength(6)], nonNullable: true })
     });
   }
 
-  ngOnInit(): void{
-    if(this.authService.isLoggedIn()) {
+  ngOnInit(): void {
+    if (this.authService.isLoggedIn()) {
       this.router.navigate(['/tasks'])
     }
   }
@@ -63,11 +63,16 @@ export class Login {
       .subscribe({
         next: (response) => {
           this.authService.saveToken(response)
+          this.userService.getUserByEmail(response).subscribe({
+            next: (user) => {
+              this.authService.saveUser(user)
+            }
+          })
           this.router.navigate(['/tasks'])
         },
         error: (e) => {
           console.error(`Erro ao fazer login`, e)
         }
       })
-  } 
+  }
 }
