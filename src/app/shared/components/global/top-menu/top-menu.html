@@ -21,7 +21,7 @@
     @if(isLogged){
     <div mat-card-avatar [matMenuTriggerFor]="menu" class="user-avatar">{{getUserInitial()}}</div>
     <mat-menu #menu="matMenu">
-        <button mat-menu-item>Perfil</button>
+        <button mat-menu-item routerLink="/user-data">Perfil</button>
         <button mat-menu-item (click)="logout()">Sair</button>
     </mat-menu>
     }
