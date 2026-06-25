@@ -21,7 +21,7 @@
         <mat-card-actions>
             <button matButton="elevated" class="full-width" [disabled]="form.invalid || isLoading" (click)="submit()">
                 <span class="cad-button-content">
-                    {{isLoading ? "Cadastrando" : "Cadastrar"}}
+                    {{isLoading ? "Entrando..." : "Entrar"}}
                     @if (isLoading) {<mat-spinner [diameter]="20"></mat-spinner>}                                     
                 </span>
             </button>
