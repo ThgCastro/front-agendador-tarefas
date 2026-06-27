@@ -11,13 +11,17 @@ import {
 } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatTimepickerModule } from '@angular/material/timepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {provideNativeDateAdapter} from '@angular/material/core';
 
 export interface DialogFields {
   nome: string;
   label: string;
-  value?: string;
-  button?: {icon: string, callback: (value: string, dialogRef: MatDialogRef<ModalDialog>) => void}
-  validators?: any[]
+  value?: string | Date;
+  button?: {icon: string, callback: (value: string, dialogRef: MatDialogRef<ModalDialog>) => void};
+  type?: 'text' | 'number' | 'date' | 'time' | 'datetime';
+  validators?: any[];
 }
 
 interface DialogData {
@@ -27,10 +31,13 @@ interface DialogData {
 
 @Component({
   selector: 'app-modal-dialog',
-  imports: [FormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatDialogContent, MatDialogActions, MatDialogTitle, ReactiveFormsModule, MatIconModule],
+  imports: [FormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatDialogContent,
+    MatDialogActions, MatDialogTitle, ReactiveFormsModule, MatIconModule, MatTimepickerModule, MatDatepickerModule],
   templateUrl: './modal-dialog.html',
   styleUrl: './modal-dialog.scss',
+  providers: [provideNativeDateAdapter()],
 })
+
 export class ModalDialog {
   readonly formBuilder = inject(FormBuilder)
   readonly dialogRef = inject(MatDialogRef<ModalDialog>);

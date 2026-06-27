@@ -2,17 +2,36 @@
 <mat-dialog-content>
     <form [formGroup]='form'>
         @for(field of fields; track field.nome){
+
+        @if(field.type === 'date'){
+        <mat-form-field class="full-width">
+            <mat-label>{{field.label}}</mat-label>
+            <input matInput [matDatepicker]="datepicker" [formControlName]="field.nome">
+            <mat-datepicker #datepicker />
+            <mat-datepicker-toggle [for]="datepicker" matSuffix />
+        </mat-form-field>
+        }
+
+        @if(field.type === 'time'){
+        <mat-form-field class="full-width">
+            <mat-label>{{field.label}}</mat-label>
+            <input matInput [matTimepicker]="timepicker" [formControlName]="field.nome">
+            <mat-timepicker #timepicker />
+            <mat-timepicker-toggle [for]="timepicker" matSuffix />
+        </mat-form-field>
+        }
+
+        @if(!field.type || field.type === 'text' || field.type === 'number'){
         <mat-form-field class="full-width">
             <mat-label>{{field.label}}</mat-label>
             <input matInput [formControlName]="field.nome">
-
             @if(field.button) {
             <button matIconButton matSuffix (click)="field.button.callback(form.get(field.nome)?.value, dialogRef)">
                 <mat-icon>{{field.button.icon}}</mat-icon>
             </button>
             }
-
         </mat-form-field>
+        }
         }
     </form>
 
